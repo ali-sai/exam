@@ -64,6 +64,8 @@ class AddPostController extends GetxController {
   }
 
 Future<void> uploadImages(String content) async {
+  if (media.isNotEmpty) {
+    
   isPosting.value = true;
   final _storageRef = FirebaseStorage.instance.ref();
   final uploadTasks = <UploadTask>[];
@@ -125,10 +127,13 @@ await Future.wait(uploadTasks);
 
   _sharePost(PostRequest(content: content, media: _media));
   isPosting.value = false;
+  }
+  else{
+    _sharePost(PostRequest(content: content, media: []));
+  }
 }
 
   _sharePost(PostRequest postRequest) async {
-print(postRequest.media[0].mediaType);
 
     try {
       http.Response _res = await http.post(

@@ -38,17 +38,17 @@ class _AddPostState extends State<AddPost> {
       appBar: AppBar(
         title: Text('Add Post'),
         actions: [
-          if(controller.media.isNotEmpty)TextButton(onPressed: (){
+          TextButton(onPressed: (){
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context) => SharePost(),));
           }, child: const Text('Next'))
         ],
       ),
       body:Column(
             children: [
-            if(controller.media.isNotEmpty)  Container(
+              Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
-              child: ImageContainer(file: controller.media[0]!, controller: controller, tap: false,)),
+              child: controller.media.isNotEmpty?ImageContainer(file: controller.media[0]!, controller: controller, tap: false,):null),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

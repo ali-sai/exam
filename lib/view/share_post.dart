@@ -51,7 +51,6 @@ class _SharePostState extends State<SharePost> with TickerProviderStateMixin {
         appBar: AppBar(
           title: Text('Add Post'),
           actions: [
-            if (controller.media.isNotEmpty)
               TextButton(
                   onPressed: () {
                     controller.uploadImages(_textEditingController.text);
